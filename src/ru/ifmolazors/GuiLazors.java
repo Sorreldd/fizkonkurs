@@ -1,7 +1,6 @@
 package ru.ifmolazors;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.swing.*;
 
@@ -11,6 +10,7 @@ public class GuiLazors extends JPanel {
 	static private GameMenu gMenu;
 	static private RubinLaser gRuby;
 	static private CO2Laser gCO2;
+	static private DyeLaser gDye;
 	public GuiLazors() throws IOException {
 		this.setPreferredSize(new Dimension(800, 600));
 		OnExec = true;
@@ -37,6 +37,13 @@ public class GuiLazors extends JPanel {
 		co2 = true;
 		dye = false;
 	}
+	public void setDye() throws IOException {
+		gDye = new DyeLaser();
+		menugame = false;
+		rub = false;
+		co2 = false;
+		dye = true;
+	}
 	@Override
 	protected void paintComponent(Graphics g) {
 		boolean flag = false;
@@ -45,7 +52,9 @@ public class GuiLazors extends JPanel {
 			flag = true;
 		}
 		if(rub == true && flag == false) {
-			gRuby.render(g);
+			try {
+				gRuby.render(g);
+			} catch (Exception e) {}
 			flag = true;
 		}
 		if(co2 == true && flag == false) {
@@ -54,6 +63,11 @@ public class GuiLazors extends JPanel {
 			} catch (Exception e) {}
 			flag = true;
 		}
-		g.setColor(Color.RED);
+		if(dye == true && flag == false) {
+			try {
+				gDye.render(g);
+			} catch (Exception e) {}
+			flag = true;
+		}
 	}
 }

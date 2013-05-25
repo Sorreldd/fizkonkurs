@@ -29,7 +29,7 @@ public class VideoClass {
 		} else {
 			numOfCadr++;
 			cadrVideo = ResourceLoader.getImage(getCadr(numOfCadr + 1));
-			Thread.sleep(15);
+			Thread.sleep(18);
 		}
 	}
 }

@@ -1,7 +1,6 @@
 package ru.ifmolazors;
 
 import java.awt.Graphics;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 

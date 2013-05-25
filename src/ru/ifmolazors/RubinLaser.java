@@ -8,6 +8,9 @@ public class RubinLaser {
 	private static BufferedImage rubImg1, rubImg2, rubImg3, rubImg4, buffImg;
 	private int backWidth, backHeight;
 	static public int cntOfSlide;
+	static public boolean videomode, vCreated;
+	VideoClass2 sampleVideo;
+	
 	private void setDrawImg() {
 		if(cntOfSlide == 0)
 			buffImg = rubImg1;
@@ -26,9 +29,19 @@ public class RubinLaser {
 		cntOfSlide = 0;
 		backWidth = rubImg1.getWidth(null);
 		backHeight = rubImg1.getHeight(null);
+		videomode = false;
+		vCreated = false;
 	}
-	public void render(Graphics g) {
-		setDrawImg();
-		g.drawImage(buffImg, 0, 0, 800, 600, 0, 0, backWidth, backHeight, null);
+	public void render(Graphics g) throws Exception {
+		if(!videomode) {
+			setDrawImg();
+			g.drawImage(buffImg, 0, 0, 800, 600, 0, 0, backWidth, backHeight, null);
+		} else {
+			if(vCreated == false) {
+				sampleVideo = new VideoClass2();
+				vCreated = true;
+			}
+			sampleVideo.render(g);
+		}
 	}
 }
